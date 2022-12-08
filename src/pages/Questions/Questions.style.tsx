@@ -1,4 +1,5 @@
-import { Grid, styled, TextField, Typography } from "@mui/material";
+import { styled, Typography, Grid } from "@mui/material";
+import Button from "../../components/Button";
 
 export const Wrapper = styled("div")`
   display: flex;
@@ -11,26 +12,33 @@ export const Wrapper = styled("div")`
   }
 `;
 
-export const Text = styled(Typography)`
-  margin: 1.5rem;
+export const QuestionText = styled(Typography)`
   font-weight: 800;
-  font-size: 24px;
+  margin: 1rem;
   text-align: center;
+  font-size: 24px;
 
   ${({ theme }) => theme.breakpoints.up("md")} {
-    font-size: 48px;
+    font-size: 44px;
   }
 `;
 
-export const UserName = styled(TextField)`
-  margin: 1.5rem;
-  width: 350px;
+export const Option = styled(Button)`
+  width: 250px;
+
+  ${({ theme }) => theme.breakpoints.up("md")} {
+    width: 350px;
+  }
 `;
 
 export const StyledGrid = styled(Grid)`
   text-align: center;
+  width: 90%;
+  position: absolute;
+  top: 30%;
 
   ${({ theme }) => theme.breakpoints.up("md")} {
-    margin: 4rem;
+    margin: auto;
+    width: 100%;
   }
 `;

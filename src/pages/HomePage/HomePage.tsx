@@ -1,8 +1,9 @@
+import { Grid } from "@mui/material";
 import { ChangeEvent, useContext } from "react";
 import { UserContext } from "../../app/App";
-import LevelsButton from "../../components/LevelsButton";
+import Button from "../../components/Button";
 import Layout from "../../layout";
-import { LevelsBox, Text, UserName, Wrapper } from "./HomePage.styles";
+import { StyledGrid, Text, UserName, Wrapper } from "./HomePage.styles";
 
 function HomePage() {
   const { userName, setUserName } = useContext(UserContext);
@@ -24,11 +25,22 @@ function HomePage() {
           onChange={handleOnChange}
         />
         <Text variant="h3">Please choose your difficulty:</Text>
-        <LevelsBox>
-          <LevelsButton level="Easy" />
-          <LevelsButton level="Medium" />
-          <LevelsButton level="Hard" />
-        </LevelsBox>
+        <StyledGrid
+          container
+          rowSpacing={3}
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Grid item xs={12} md={4}>
+            <Button text="Easy" link="easy" />
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Button text="Medium" link="medium" />
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Button text="Hard" link="hard" />
+          </Grid>
+        </StyledGrid>
       </Wrapper>
     </Layout>
   );

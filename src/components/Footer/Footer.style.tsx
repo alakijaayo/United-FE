@@ -13,4 +13,9 @@ export const StyledToolbar = styled(Toolbar)`
 
 export const Text = styled(Typography)`
   font-weight: 800;
+  font-size: 16px;
+
+  ${({ theme }) => theme.breakpoints.up("md")} {
+    font-size: 34px;
+  }
 `;
