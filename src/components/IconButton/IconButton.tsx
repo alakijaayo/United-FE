@@ -1,4 +1,4 @@
-import MenuOptions from "../../models";
+import MenuOptions from "../../models/MenuOptions";
 import { StyledIconButton } from "./IconButton.style";
 import { useNavigate } from "react-router-dom";
 

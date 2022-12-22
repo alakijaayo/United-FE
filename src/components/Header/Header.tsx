@@ -7,7 +7,7 @@ import {
   StyledToolbar,
   Text,
 } from "./Header.styles";
-import MenuOptions from "../../models";
+import MenuOptions from "../../models/MenuOptions";
 
 function Header() {
   const homeOptions: MenuOptions = {

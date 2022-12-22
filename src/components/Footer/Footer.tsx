@@ -4,6 +4,7 @@ import { StyledFooter, StyledToolbar, Text } from "./Footer.style";
 
 function Footer() {
   const { userName } = useContext(UserContext);
+
   return (
     <>
       <StyledFooter position="fixed">
