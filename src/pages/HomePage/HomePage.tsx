@@ -1,8 +1,8 @@
 import { Grid } from "@mui/material";
 import { ChangeEvent, useContext } from "react";
-import { UserContext } from "../../app/App";
 import Button from "../../components/Button";
 import Layout from "../../layout";
+import { UserContext } from "../../providers/UserProvider/UserProvider";
 import { StyledGrid, Text, UserName, Wrapper } from "./HomePage.styles";
 
 function HomePage() {

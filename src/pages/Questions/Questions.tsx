@@ -7,7 +7,6 @@ import { QuestionText, StyledGrid, Option, Wrapper } from "./Questions.style";
 
 function Questions() {
   const query = levelInfo(window.location.href);
-  console.log(query);
 
   const [question, setQuestion] = useState<Question>({
     number: null,
@@ -24,8 +23,6 @@ function Questions() {
     fetch(url)
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
-
         setQuestion({
           number: response.number,
           question: response.question,
