@@ -1,14 +1,14 @@
 import { Grid } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Layout from "../../layout";
-import Question from "../../models/Question/";
-import { useCount } from "../../providers/QuestionProvider";
+import Question from "../../models/Question";
+import { UserContext } from "../../providers/UserProvider/UserProvder";
 import { levelInfo } from "../../utils/levelInfo/levelInfo";
 import { QuestionText, StyledGrid, Option, Wrapper } from "./Questions.style";
 
 function Questions() {
   const query = levelInfo(window.location.href);
-  const { dispatch } = useCount();
+  const { dispatch } = useContext(UserContext);
 
   const [question, setQuestion] = useState<Question>({
     number: null,
@@ -21,7 +21,7 @@ function Questions() {
   });
 
   useEffect(() => {
-    dispatch({ type: "increment" });
+    dispatch({ type: "incrementQuestion" });
     const url = "http://localhost:8080/" + query;
     fetch(url)
       .then((response) => response.json())

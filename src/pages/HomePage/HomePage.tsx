@@ -2,13 +2,17 @@ import { Grid } from "@mui/material";
 import { ChangeEvent, useContext } from "react";
 import Button from "../../components/Button";
 import Layout from "../../layout";
-import { UserContext } from "../../providers/UserProvider/UserProvider";
+import { UserContext } from "../../providers/UserProvider/UserProvder";
 import { StyledGrid, Text, UserName, Wrapper } from "./HomePage.styles";
 
 function HomePage() {
-  const { userName, setUserName } = useContext(UserContext);
-  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) =>
-    setUserName(e.target.value);
+  const { state, dispatch } = useContext(UserContext);
+  const { name } = state;
+  const handleOnChange = ({ target }: ChangeEvent<HTMLInputElement>): void =>
+    dispatch({
+      type: "setName",
+      payload: target.value,
+    });
 
   return (
     <Layout>
@@ -21,7 +25,7 @@ function HomePage() {
         <UserName
           variant="outlined"
           placeholder="Insert Name Here"
-          value={userName}
+          value={name}
           onChange={handleOnChange}
         />
         <Text variant="h3">Please choose your difficulty:</Text>
