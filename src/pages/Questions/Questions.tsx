@@ -2,11 +2,13 @@ import { Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import Layout from "../../layout";
 import Question from "../../models/Question/";
+import { useCount } from "../../providers/QuestionProvider";
 import { levelInfo } from "../../utils/levelInfo/levelInfo";
 import { QuestionText, StyledGrid, Option, Wrapper } from "./Questions.style";
 
 function Questions() {
   const query = levelInfo(window.location.href);
+  const { dispatch } = useCount();
 
   const [question, setQuestion] = useState<Question>({
     number: null,
@@ -19,6 +21,7 @@ function Questions() {
   });
 
   useEffect(() => {
+    dispatch({ type: "increment" });
     const url = "http://localhost:8080/" + query;
     fetch(url)
       .then((response) => response.json())
@@ -33,7 +36,7 @@ function Questions() {
           correct: response.correct,
         });
       });
-  }, [query]);
+  }, [query, dispatch]);
 
   return (
     <Layout>

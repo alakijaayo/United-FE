@@ -3,11 +3,9 @@ import Header from "../components/Header";
 
 interface LayoutProps {
   children: React.ReactNode;
-  ariaLabel?: string;
-  className?: string;
 }
 
-function Layout({ children, ariaLabel, className }: LayoutProps) {
+function Layout({ children }: LayoutProps) {
   return (
     <>
       <Header />
@@ -16,10 +14,5 @@ function Layout({ children, ariaLabel, className }: LayoutProps) {
     </>
   );
 }
-
-Layout.defaultProps = {
-  ariaLabel: null,
-  className: null,
-};
 
 export default Layout;

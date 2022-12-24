@@ -1,12 +1,15 @@
+import { QuestionProvider } from "../providers/QuestionProvider";
 import UserProvider from "../providers/UserProvider";
 import Router from "./Routes";
 
 function App() {
   return (
     <>
-      <UserProvider>
-        <Router />
-      </UserProvider>
+      <QuestionProvider>
+        <UserProvider>
+          <Router />
+        </UserProvider>
+      </QuestionProvider>
     </>
   );
 }

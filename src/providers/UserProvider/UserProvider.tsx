@@ -18,8 +18,6 @@ function UserProvider({ children }: UserProviderProps) {
   const [userName, setUserName] = useState("");
   const value = useMemo(() => ({ userName, setUserName }), [userName]);
 
-  console.log(userName);
-
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 }
 

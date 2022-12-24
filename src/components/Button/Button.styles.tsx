@@ -6,6 +6,7 @@ export const Levels = styled(Button)`
   background: red;
   font-size: 24px;
   font-weight: 800;
+  line-height: inherit;
 
   &:hover {
     background: black;
