@@ -6,9 +6,18 @@ interface UserProviderProps {
 }
 
 const initialState = {
-  name: "",
+  username: "",
   questionCount: 0,
   scoreCount: 0,
+  question: {
+    number: null,
+    question: "",
+    option_a: "",
+    option_b: "",
+    option_c: "",
+    option_d: "",
+    correct: "",
+  },
 };
 
 export const UserContext = createContext<any>({});

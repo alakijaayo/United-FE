@@ -1,4 +1,4 @@
-import { Grid, styled, TextField, Typography } from "@mui/material";
+import { Button, Grid, styled, TextField, Typography } from "@mui/material";
 
 export const Wrapper = styled("div")`
   display: flex;
@@ -18,7 +18,7 @@ export const Text = styled(Typography)`
   text-align: center;
 
   ${({ theme }) => theme.breakpoints.up("md")} {
-    font-size: 48px;
+    font-size: 60px;
   }
 `;
 
@@ -32,5 +32,13 @@ export const StyledGrid = styled(Grid)`
 
   ${({ theme }) => theme.breakpoints.up("md")} {
     margin: 4rem;
+  }
+`;
+
+export const Submit = styled(Button)`
+  background: red;
+
+  &:hover {
+    background: black;
   }
 `;

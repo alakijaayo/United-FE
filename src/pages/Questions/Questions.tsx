@@ -1,14 +1,8 @@
 import { Grid } from "@mui/material";
-import {
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { Dispatch, SetStateAction, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "../../layout";
-import Question from "../../models/Question";
+import { Types } from "../../providers/UserProvider/reducer";
 import { UserContext } from "../../providers/UserProvider/UserProvder";
 import { levelInfo } from "../../utils/levelInfo";
 import { QuestionText, StyledGrid, Option, Wrapper } from "./Questions.style";
@@ -20,39 +14,28 @@ interface QuestionsProps {
 function Questions({ setRoute }: QuestionsProps) {
   const query = levelInfo(window.location.href);
   const history = useNavigate();
-  const { dispatch } = useContext(UserContext);
-
-  const [question, setQuestion] = useState<Question>({
-    number: null,
-    question: "",
-    option_a: "",
-    option_b: "",
-    option_c: "",
-    option_d: "",
-    correct: "",
-  });
+  const { state, dispatch } = useContext(UserContext);
+  const { question } = state;
 
   const checkAnswer = async (answer: string) => {
-    return answer === question.correct
-      ? history("/correct")
-      : history("/incorrect");
+    if (answer === question.correct) {
+      dispatch({ type: Types.AddScore });
+      return history("/correct");
+    }
+
+    return history("/incorrect");
   };
 
   useEffect(() => {
-    dispatch({ type: "incrementQuestion" });
+    dispatch({ type: Types.AddQuestion });
     setRoute(query);
     const url = "http://localhost:8080" + query;
     fetch(url)
       .then((response) => response.json())
       .then((response) => {
-        setQuestion({
-          number: response.number,
-          question: response.question,
-          option_a: response.option_a,
-          option_b: response.option_b,
-          option_c: response.option_c,
-          option_d: response.option_d,
-          correct: response.correct,
+        dispatch({
+          type: Types.setQuestion,
+          payload: response,
         });
       });
   }, [query, dispatch, setRoute]);

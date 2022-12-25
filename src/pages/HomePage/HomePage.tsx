@@ -1,18 +1,29 @@
 import { Grid } from "@mui/material";
-import { ChangeEvent, useContext } from "react";
 import Button from "../../components/Button";
 import Layout from "../../layout";
-import { UserContext } from "../../providers/UserProvider/UserProvder";
-import { StyledGrid, Text, UserName, Wrapper } from "./HomePage.styles";
+// import { Types } from "../../providers/UserProvider/reducer";
+// import { UserContext } from "../../providers/UserProvider/UserProvder";
+import { StyledGrid, Text, Wrapper } from "./HomePage.styles";
+
+// interface HomePageProps {
+//   username: string;
+//   setUsername: Dispatch<SetStateAction<string>>;
+// }
 
 function HomePage() {
-  const { state, dispatch } = useContext(UserContext);
-  const { name } = state;
-  const handleOnChange = ({ target }: ChangeEvent<HTMLInputElement>): void =>
-    dispatch({
-      type: "setName",
-      payload: target.value,
-    });
+  // const { dispatch } = useContext(UserContext);
+
+  // const handleOnChange = (e: ChangeEvent<HTMLInputElement>) =>
+  //   setUsername(e.target.value);
+
+  // const handleOnSubmit = () => {
+  //   dispatch({
+  //     type: Types.setName,
+  //     payload: {
+  //       username: username,
+  //     },
+  //   });
+  // };
 
   return (
     <Layout>
@@ -22,16 +33,19 @@ function HomePage() {
           A quiz about the greatest football team in the world!
         </Text>
         <Text variant="h3">Please Insert your Name:</Text>
-        <UserName
+        {/* <UserName
           variant="outlined"
           placeholder="Insert Name Here"
-          value={name}
+          value={username}
           onChange={handleOnChange}
         />
+        <Submit variant="contained" onClick={() => handleOnSubmit()}>
+          Submit
+        </Submit> */}
         <Text variant="h3">Please choose your difficulty:</Text>
         <StyledGrid
           container
-          rowSpacing={3}
+          rowSpacing={6}
           justifyContent="center"
           alignItems="center"
         >

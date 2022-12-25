@@ -12,6 +12,13 @@ export const Text = styled(Typography)`
   }
 `;
 
+export const StyledDiv = styled("div")`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
 export const Next = styled(Button)`
   width: 250px;
   font-size: 15px;
