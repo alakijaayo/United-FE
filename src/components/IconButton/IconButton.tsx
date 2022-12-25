@@ -15,6 +15,7 @@ function IconButton({ options }: IconButtonProps) {
 
     history(path);
   };
+
   return (
     <StyledIconButton onClick={() => handleOnClick(options)}>
       <Icon style={iconProps} />

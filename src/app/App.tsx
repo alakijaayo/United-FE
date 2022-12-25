@@ -1,12 +1,12 @@
-import UserProviderV2 from "../providers/UserProvider/UserProvder";
+import UserProvider from "../providers/UserProvider/UserProvder";
 import Router from "./Routes";
 
 function App() {
   return (
     <>
-      <UserProviderV2>
+      <UserProvider>
         <Router />
-      </UserProviderV2>
+      </UserProvider>
     </>
   );
 }
