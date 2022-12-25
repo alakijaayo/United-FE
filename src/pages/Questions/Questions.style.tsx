@@ -1,17 +1,6 @@
 import { styled, Typography, Grid } from "@mui/material";
 import Button from "../../components/Button";
 
-export const Wrapper = styled("div")`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-  ${({ theme }) => theme.breakpoints.up("md")} {
-    margin: 1rem;
-  }
-`;
-
 export const QuestionText = styled(Typography)`
   font-weight: 800;
   margin: 1rem;

@@ -4,15 +4,15 @@ import { useNavigate } from "react-router-dom";
 import Layout from "../../layout";
 import { Types } from "../../providers/UserProvider/reducer";
 import { UserContext } from "../../providers/UserProvider/UserProvder";
-import { levelInfo } from "../../utils/levelInfo";
-import { QuestionText, StyledGrid, Option, Wrapper } from "./Questions.style";
+import { LevelInfo } from "../../utils/LevelInfo";
+import { QuestionText, StyledGrid, Option } from "./Questions.style";
 
 interface QuestionsProps {
   setRoute: Dispatch<SetStateAction<string>>;
 }
 
 function Questions({ setRoute }: QuestionsProps) {
-  const query = levelInfo(window.location.href);
+  const query = LevelInfo(window.location.href);
   const history = useNavigate();
   const { state, dispatch } = useContext(UserContext);
   const { question } = state;
@@ -42,35 +42,33 @@ function Questions({ setRoute }: QuestionsProps) {
 
   return (
     <Layout>
-      <Wrapper>
-        <QuestionText variant="h3">{question.question}</QuestionText>
-        <StyledGrid container rowSpacing={{ xs: 4, md: 12 }} spacing={2}>
-          <Grid item xs={12} md={6}>
-            <Option
-              text={question.option_a}
-              onClick={() => checkAnswer(question.option_a)}
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Option
-              text={question.option_b}
-              onClick={() => checkAnswer(question.option_b)}
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Option
-              text={question.option_c}
-              onClick={() => checkAnswer(question.option_c)}
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Option
-              text={question.option_d}
-              onClick={() => checkAnswer(question.option_d)}
-            />
-          </Grid>
-        </StyledGrid>
-      </Wrapper>
+      <QuestionText variant="h3">{question.question}</QuestionText>
+      <StyledGrid container rowSpacing={{ xs: 4, md: 12 }} spacing={2}>
+        <Grid item xs={12} md={6}>
+          <Option
+            text={question.option_a}
+            onClick={() => checkAnswer(question.option_a)}
+          />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Option
+            text={question.option_b}
+            onClick={() => checkAnswer(question.option_b)}
+          />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Option
+            text={question.option_c}
+            onClick={() => checkAnswer(question.option_c)}
+          />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Option
+            text={question.option_d}
+            onClick={() => checkAnswer(question.option_d)}
+          />
+        </Grid>
+      </StyledGrid>
     </Layout>
   );
 }
