@@ -15,7 +15,8 @@ function Questions({ setRoute }: QuestionsProps) {
   const query = LevelInfo(window.location.href);
   const history = useNavigate();
   const { state, dispatch } = useContext(UserContext);
-  const { question } = state;
+  const { questionCount, question } = state;
+  const questionNumber = questionCount + 1;
 
   const checkAnswer = async (answer: string) => {
     if (answer === question.correct) {
@@ -28,8 +29,9 @@ function Questions({ setRoute }: QuestionsProps) {
 
   useEffect(() => {
     dispatch({ type: Types.AddQuestion });
+    const url =
+      "http://localhost:8080" + query + "?questionNumber=" + questionNumber;
     setRoute(query);
-    const url = "http://localhost:8080" + query;
     fetch(url)
       .then((response) => response.json())
       .then((response) => {
@@ -38,6 +40,7 @@ function Questions({ setRoute }: QuestionsProps) {
           payload: response,
         });
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, dispatch, setRoute]);
 
   return (
