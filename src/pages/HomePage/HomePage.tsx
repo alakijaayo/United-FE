@@ -10,11 +10,10 @@ function HomePage() {
       <Text variant="h3">
         A quiz about the greatest football team in the world!
       </Text>
-      <Text variant="h3">Please Insert your Name:</Text>
       <Text variant="h3">Please choose your difficulty:</Text>
       <StyledGrid
         container
-        rowSpacing={6}
+        rowSpacing={{ xs: 3, md: 6 }}
         justifyContent="center"
         alignItems="center"
       >

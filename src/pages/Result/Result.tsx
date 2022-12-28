@@ -3,7 +3,7 @@ import Layout from "../../layout/Layout";
 import { UserContext } from "../../providers/UserProvider";
 import { Types } from "../../providers/UserProvider/reducer";
 import { resultQuote } from "../../utils/ResultQuote";
-import { Text, UserName } from "./Result.style";
+import { StyledDiv, Text, UserName } from "./Result.style";
 
 function Result() {
   const { state, dispatch } = useContext(UserContext);
@@ -19,14 +19,16 @@ function Result() {
 
   return (
     <Layout>
-      <Text variant="h1">{quote}</Text>
-      <Text variant="h1">Your final score is {scoreCount}</Text>
-      <UserName
-        variant="outlined"
-        placeholder="Insert Name Here"
-        value={username}
-        onChange={handleOnChange}
-      />
+      <StyledDiv>
+        <Text variant="h1">{quote}</Text>
+        <Text variant="h1">Your final score is {scoreCount}</Text>
+        <UserName
+          variant="outlined"
+          placeholder="Insert Name Here"
+          value={username}
+          onChange={handleOnChange}
+        />
+      </StyledDiv>
     </Layout>
   );
 }

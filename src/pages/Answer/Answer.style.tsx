@@ -2,13 +2,25 @@ import { styled, Typography } from "@mui/material";
 import Button from "../../components/Button";
 
 export const Text = styled(Typography)`
-  margin: 1.5rem;
+  margin-bottom: 1rem;
   font-weight: 800;
-  font-size: 24px;
+  font-size: 36px;
   text-align: center;
 
   ${({ theme }) => theme.breakpoints.up("md")} {
     font-size: 72px;
+    margin-bottom: 1.5rem;
+  }
+`;
+
+export const CorrectAnswer = styled(Typography)`
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  text-align: center;
+
+  ${({ theme }) => theme.breakpoints.up("md")} {
+    font-size: 44px;
   }
 `;
 
@@ -22,4 +34,15 @@ export const Next = styled(Button)`
     font-size: 24px;
     height: 70px;
   }
+`;
+
+export const StyledDiv = styled("div")`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
