@@ -38,20 +38,22 @@
 
 import "@testing-library/cypress/add-commands";
 let score = 0;
-let question = 1;
+let question = 0;
 
 Cypress.Commands.add("chooseLevel", () => {
   const levels = ["Easy", "Medium", "Hard"];
   const level = levels[Math.floor(Math.random() * levels.length)];
   cy.visit("/");
+  cy.findByText(`Question: ${question}/25`).should("exist");
+  cy.findByText(`Score: ${score}/25`).should("exist");
   cy.findByText(level).click();
 });
 
 Cypress.Commands.add("selectOption", () => {
   const options = ["A", "B", "C", "D"];
   const option = options[Math.floor(Math.random() * options.length)];
-  cy.findByText(`Question: ${question}/25`).should("exist");
   question += 1;
+  cy.findByText(`Question: ${question}/25`).should("exist");
   cy.wait(800);
   cy.findByLabelText(`option ${option}`).click();
 });
