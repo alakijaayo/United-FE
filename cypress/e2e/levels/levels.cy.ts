@@ -1,5 +1,5 @@
-describe("easy level", () => {
-  it("Completes an easy level run", () => {
+describe("levels", () => {
+  it("Completes a level run", () => {
     cy.chooseLevel();
     cy.findByText("Score: 0/25").should("exist");
     Cypress._.times(25, () => {
