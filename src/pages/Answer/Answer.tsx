@@ -36,7 +36,7 @@ function Answer({ route }: AnswerProps) {
             </CorrectAnswer>
           </>
         )}
-        <Next text={text} onClick={handleOnNext} />
+        <Next ariaLabel="onNext" text={text} onClick={handleOnNext} />
       </StyledDiv>
     </Layout>
   );

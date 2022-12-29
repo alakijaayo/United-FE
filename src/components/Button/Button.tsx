@@ -5,13 +5,21 @@ interface LevelsButtonProps {
   link?: string;
   onClick?: () => void;
   className?: string;
+  ariaLabel?: string;
 }
 
-function Button({ text, link, className, onClick }: LevelsButtonProps) {
+function Button({
+  text,
+  link,
+  className,
+  onClick,
+  ariaLabel,
+}: LevelsButtonProps) {
   return (
     <Levels
       className={className}
       fullWidth
+      aria-label={ariaLabel}
       variant="contained"
       disableRipple
       onClick={onClick}
