@@ -36,7 +36,7 @@ function Header() {
           <IconButton options={homeOptions} />
           <Text variant="h4">United Quiz</Text>
           <IconButton options={leaderboardOptions} />
-          <StyledButton color="inherit" variant="outlined">
+          <StyledButton color="inherit" variant="outlined" href="/">
             Leaderboard
           </StyledButton>
         </StyledToolbar>

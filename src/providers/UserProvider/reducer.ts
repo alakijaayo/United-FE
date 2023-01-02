@@ -23,6 +23,7 @@ export enum Types {
   AddQuestion = "incrementQuestion",
   setName = "setName",
   setQuestion = "setQuestion",
+  reset = "resetNumbers",
 }
 
 type QuestionPayload = {
@@ -40,6 +41,7 @@ type QuestionPayload = {
     option_d: string;
     correct: string;
   };
+  [Types.reset]: undefined;
 };
 
 export type QuestionAction =
@@ -61,6 +63,12 @@ const reducer = (state: State, action: QuestionAction): State => {
       return {
         ...state,
         username: action.payload.username,
+      };
+    case Types.reset:
+      return {
+        ...state,
+        questionCount: 0,
+        scoreCount: 0,
       };
     case Types.setQuestion:
       return {

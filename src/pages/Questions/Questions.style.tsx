@@ -15,7 +15,7 @@ export const QuestionText = styled(Typography)`
 export const Option = styled(Button)`
   width: 250px;
   font-size: 15px;
-  height: 50px;
+  height: 60px;
 
   ${({ theme }) => theme.breakpoints.up("md")} {
     width: 500px;
