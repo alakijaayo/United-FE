@@ -45,7 +45,9 @@ function Questions({ setRoute }: QuestionsProps) {
 
   return (
     <Layout>
-      <QuestionText variant="h3">{question.question}</QuestionText>
+      <QuestionText aria-label="question" variant="h3">
+        {question.question}
+      </QuestionText>
       <StyledGrid container rowSpacing={{ xs: 4, md: 12 }} spacing={2}>
         <Grid item xs={12} md={6}>
           <Option
