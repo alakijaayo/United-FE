@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import Layout from "../../layout";
 import { Types } from "../../providers/UserProvider/reducer";
 import { UserContext } from "../../providers/UserProvider/UserProvder";
-import { LevelInfo } from "../../utils/LevelInfo";
 import { QuestionText, StyledGrid, Option } from "./Questions.style";
 
 interface QuestionsProps {
@@ -12,7 +11,6 @@ interface QuestionsProps {
 }
 
 function Questions({ setRoute }: QuestionsProps) {
-  const query = LevelInfo(window.location.href);
   const history = useNavigate();
   const { state, dispatch } = useContext(UserContext);
   const { questionCount, question } = state;
@@ -30,8 +28,11 @@ function Questions({ setRoute }: QuestionsProps) {
   useEffect(() => {
     dispatch({ type: Types.AddQuestion });
     const url =
-      "http://localhost:8080" + query + "?questionNumber=" + questionNumber;
-    setRoute(query);
+      "http://localhost:8080" +
+      window.location.pathname +
+      "?questionNumber=" +
+      questionNumber;
+    setRoute(window.location.pathname);
     fetch(url)
       .then((response) => response.json())
       .then((response) => {
@@ -41,7 +42,7 @@ function Questions({ setRoute }: QuestionsProps) {
         });
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query, dispatch, setRoute]);
+  }, [dispatch, setRoute]);
 
   return (
     <Layout>

@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "../../layout";
 import { UserContext } from "../../providers/UserProvider";
-import { LevelInfo } from "../../utils/LevelInfo";
 import { CorrectAnswer, Next, StyledDiv, Text } from "./Answer.style";
 
 interface AnswerProps {
@@ -10,8 +9,7 @@ interface AnswerProps {
 }
 
 function Answer({ route }: AnswerProps) {
-  const query = LevelInfo(window.location.href);
-  const isCorrect = query === "/correct";
+  const isCorrect = window.location.pathname === "/correct";
   const { state } = useContext(UserContext);
   const { questionCount, question } = state;
   const { correct } = question;
