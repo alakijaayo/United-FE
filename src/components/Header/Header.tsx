@@ -6,7 +6,7 @@ import {
   StyledHeader,
   StyledToolbar,
   Text,
-} from "./Header.styles";
+} from "./Header.style";
 import MenuOptions from "../../models/MenuOptions";
 
 function Header() {
