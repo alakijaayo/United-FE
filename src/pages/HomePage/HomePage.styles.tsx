@@ -14,6 +14,8 @@ export const Text = styled(Typography)`
 
 export const StyledGrid = styled(Grid)`
   text-align: center;
+  justify-content: center;
+  align-items: center;
 
   ${({ theme }) => theme.breakpoints.up("md")} {
     margin: 4rem;

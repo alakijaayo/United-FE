@@ -11,12 +11,7 @@ function HomePage() {
         A quiz about the greatest football team in the world!
       </Text>
       <Text variant="h3">Please choose your difficulty:</Text>
-      <StyledGrid
-        container
-        rowSpacing={{ xs: 3, md: 6 }}
-        justifyContent="center"
-        alignItems="center"
-      >
+      <StyledGrid container rowSpacing={{ xs: 3, md: 6 }}>
         <Grid item xs={12} md={4}>
           <Button text="Easy" link="easy" />
         </Grid>
