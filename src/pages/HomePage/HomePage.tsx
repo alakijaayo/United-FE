@@ -4,6 +4,7 @@ import Layout from "../../layout";
 import { StyledGrid, Text } from "./HomePage.styles";
 
 function HomePage() {
+  console.log(process.env.NODE_ENV);
   return (
     <Layout>
       <Text variant="h3">Welcome to the Manchester United Quiz</Text>
