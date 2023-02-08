@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "../../layout";
+import { Types } from "../../providers/UserProvider/reducer";
 import { UserContext } from "../../providers/UserProvider";
 import { CorrectAnswer, Next, StyledDiv, Text } from "./Answer.style";
 
@@ -10,7 +11,7 @@ interface AnswerProps {
 
 function Answer({ route }: AnswerProps) {
   const isCorrect = window.location.pathname === "/correct";
-  const { state } = useContext(UserContext);
+  const { state, dispatch } = useContext(UserContext);
   const { questionCount, question } = state;
   const { correct } = question;
   const history = useNavigate();
@@ -18,6 +19,7 @@ function Answer({ route }: AnswerProps) {
   const link = questionCount !== 25 ? route : "/result";
 
   const handleOnNext = () => {
+    dispatch({ type: Types.resetQuestion });
     return history(link);
   };
 

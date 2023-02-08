@@ -52,39 +52,43 @@ function Questions({ setRoute }: QuestionsProps) {
 
   return (
     <Layout>
-      <QuestionText aria-label="question" variant="h3">
-        {question.question}
-      </QuestionText>
-      <StyledGrid container rowSpacing={{ xs: 4, md: 12 }} spacing={2}>
-        <Grid item xs={12} md={6}>
-          <Option
-            text={question.option_a}
-            ariaLabel="option A"
-            onClick={() => checkAnswer(question.option_a)}
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Option
-            text={question.option_b}
-            ariaLabel="option B"
-            onClick={() => checkAnswer(question.option_b)}
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Option
-            text={question.option_c}
-            ariaLabel="option C"
-            onClick={() => checkAnswer(question.option_c)}
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Option
-            text={question.option_d}
-            ariaLabel="option D"
-            onClick={() => checkAnswer(question.option_d)}
-          />
-        </Grid>
-      </StyledGrid>
+      {question && (
+        <>
+          <QuestionText aria-label="question" variant="h3">
+            {question.question}
+          </QuestionText>
+          <StyledGrid container rowSpacing={{ xs: 4, md: 12 }} spacing={2}>
+            <Grid item xs={12} md={6}>
+              <Option
+                text={question.option_a}
+                ariaLabel="option A"
+                onClick={() => checkAnswer(question.option_a)}
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Option
+                text={question.option_b}
+                ariaLabel="option B"
+                onClick={() => checkAnswer(question.option_b)}
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Option
+                text={question.option_c}
+                ariaLabel="option C"
+                onClick={() => checkAnswer(question.option_c)}
+              />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Option
+                text={question.option_d}
+                ariaLabel="option D"
+                onClick={() => checkAnswer(question.option_d)}
+              />
+            </Grid>
+          </StyledGrid>
+        </>
+      )}
     </Layout>
   );
 }
