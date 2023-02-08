@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "../../layout";
 import { Types } from "../../providers/UserProvider/reducer";
-import { UserContext } from "../../providers/UserProvider/UserProvder";
+import { UserContext } from "../../providers/UserProvider/UserProvider";
 import { QuestionText, StyledGrid, Option } from "./Questions.style";
 
 interface QuestionsProps {
@@ -15,6 +15,10 @@ function Questions({ setRoute }: QuestionsProps) {
   const { state, dispatch } = useContext(UserContext);
   const { questionCount, question } = state;
   const questionNumber = questionCount + 1;
+  const URL =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:8080"
+      : "http://ec2-18-130-127-69.eu-west-2.compute.amazonaws.com";
 
   const checkAnswer = async (answer: string) => {
     if (answer === question.correct) {
@@ -27,13 +31,15 @@ function Questions({ setRoute }: QuestionsProps) {
 
   useEffect(() => {
     dispatch({ type: Types.AddQuestion });
-    const url =
-      "http://localhost:8080" +
+    const callback =
+      URL +
       window.location.pathname +
       "?questionNumber=" +
-      questionNumber;
+      questionNumber +
+      "&environment=" +
+      process.env.NODE_ENV;
     setRoute(window.location.pathname);
-    fetch(url)
+    fetch(callback)
       .then((response) => response.json())
       .then((response) => {
         dispatch({

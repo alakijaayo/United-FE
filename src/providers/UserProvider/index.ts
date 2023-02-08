@@ -1,2 +1,2 @@
-export * from "./UserProvder";
-export { default } from "./UserProvder";
+export * from "./UserProvider";
+export { default } from "./UserProvider";

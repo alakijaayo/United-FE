@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { UserContext } from "../../providers/UserProvider/UserProvder";
+import { UserContext } from "../../providers/UserProvider/UserProvider";
 import { StyledFooter, StyledToolbar, Text } from "./Footer.style";
 
 function Footer() {

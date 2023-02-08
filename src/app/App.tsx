@@ -1,4 +1,4 @@
-import UserProvider from "../providers/UserProvider/UserProvder";
+import UserProvider from "../providers/UserProvider/UserProvider";
 import Router from "./Router";
 
 function App() {
