@@ -1,11 +1,16 @@
 import { Grid } from "@mui/material";
-import { useEffect, useState } from "react";
-import { getAnswers } from "../../api/api";
+import { useContext, useEffect, useState } from "react";
+import { checkAnswer, getQuestion } from "../../api/api";
 import Layout from "../../layout";
 import Question from "../../models/Question";
+import { UserContext } from "../../providers/UserProvider";
 import { QuestionText, StyledGrid, Option } from "./Questions.style";
+import { useNavigate } from "react-router-dom";
 
 function Questions() {
+  const history = useNavigate();
+  const { state } = useContext(UserContext);
+  const { questionCount } = state;
   const [question, setQuestion] = useState<Question>({
     number: null,
     question: "",
@@ -16,7 +21,7 @@ function Questions() {
   });
 
   useEffect(() => {
-    getAnswers(1).then((response) => {
+    getQuestion(questionCount).then((response) => {
       setQuestion({
         number: response.number,
         question: response.question,
@@ -26,7 +31,13 @@ function Questions() {
         option_d: response.option_d,
       });
     });
-  }, []);
+  }, [questionCount]);
+
+  const handleOnClick = (option: string) => {
+    checkAnswer(question.number, option).then((response) =>
+      history(response.url)
+    );
+  };
 
   return (
     <Layout>
@@ -40,28 +51,28 @@ function Questions() {
               <Option
                 text={question.option_a}
                 ariaLabel="option A"
-                // onClick={() => checkAnswer(question.option_a)}
+                onClick={() => handleOnClick(question.option_a)}
               />
             </Grid>
             <Grid item xs={12} md={6}>
               <Option
                 text={question.option_b}
                 ariaLabel="option B"
-                // onClick={() => checkAnswer(question.option_b)}
+                onClick={() => handleOnClick(question.option_b)}
               />
             </Grid>
             <Grid item xs={12} md={6}>
               <Option
                 text={question.option_c}
                 ariaLabel="option C"
-                // onClick={() => checkAnswer(question.option_c)}
+                onClick={() => handleOnClick(question.option_c)}
               />
             </Grid>
             <Grid item xs={12} md={6}>
               <Option
                 text={question.option_d}
                 ariaLabel="option D"
-                // onClick={() => checkAnswer(question.option_d)}
+                onClick={() => handleOnClick(question.option_d)}
               />
             </Grid>
           </StyledGrid>

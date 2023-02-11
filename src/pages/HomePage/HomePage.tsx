@@ -17,7 +17,7 @@ function HomePage({ levels, setRoute }: HomePageProps) {
   const { dispatch } = useContext(UserContext);
 
   const onLevelSelect = (level: string) => {
-    setRoute(level);
+    setRoute(`/${level}`);
     dispatch({ type: Types.AddQuestion });
 
     history(level);
