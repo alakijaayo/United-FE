@@ -5,7 +5,6 @@ interface Question {
   option_b: string;
   option_c: string;
   option_d: string;
-  correct: string;
 }
 
 export default Question;

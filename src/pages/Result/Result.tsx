@@ -1,21 +1,16 @@
-import { useContext, ChangeEvent } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 import Layout from "../../layout/Layout";
 import { UserContext } from "../../providers/UserProvider";
-import { Types } from "../../providers/UserProvider/reducer";
 import { resultQuote } from "../../utils/ResultQuote";
 import { StyledDiv, Text, UserName } from "./Result.style";
 
 function Result() {
-  const { state, dispatch } = useContext(UserContext);
-  const { scoreCount, username } = state;
+  const [username, setUsername] = useState("");
+  const { state } = useContext(UserContext);
+  const { scoreCount } = state;
   const quote = resultQuote(scoreCount);
   const handleOnChange = ({ target }: ChangeEvent<HTMLInputElement>): void =>
-    dispatch({
-      type: Types.setName,
-      payload: {
-        username: target.value,
-      },
-    });
+    setUsername(target.value);
 
   return (
     <Layout>

@@ -7,7 +7,7 @@ import Result from "../pages/Result";
 import { UserContext } from "../providers/UserProvider";
 
 function Router() {
-  const questionRoutes = ["/easy", "/medium", "/hard"];
+  const questionRoutes = ["easy", "medium", "hard"];
   const answerRoutes = ["/correct", "/incorrect"];
   const [route, setRoute] = useState("");
   const { state } = useContext(UserContext);
@@ -16,13 +16,12 @@ function Router() {
 
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route
+        path="/"
+        element={<HomePage levels={questionRoutes} setRoute={setRoute} />}
+      />
       {questionRoutes.map((path) => (
-        <Route
-          key={`${path}`}
-          path={path}
-          element={<Questions setRoute={setRoute} />}
-        />
+        <Route key={`${path}`} path={path} element={<Questions />} />
       ))}
       {answerRoutes.map((path) => (
         <Route key={`${path}`} path={path} element={<Answer route={route} />} />

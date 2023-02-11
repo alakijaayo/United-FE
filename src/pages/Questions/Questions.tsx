@@ -1,54 +1,32 @@
 import { Grid } from "@mui/material";
-import { Dispatch, SetStateAction, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getAnswers } from "../../api/api";
 import Layout from "../../layout";
-import { Types } from "../../providers/UserProvider/reducer";
-import { UserContext } from "../../providers/UserProvider/UserProvider";
+import Question from "../../models/Question";
 import { QuestionText, StyledGrid, Option } from "./Questions.style";
 
-interface QuestionsProps {
-  setRoute: Dispatch<SetStateAction<string>>;
-}
-
-function Questions({ setRoute }: QuestionsProps) {
-  const history = useNavigate();
-  const { state, dispatch } = useContext(UserContext);
-  const { questionCount, question } = state;
-  const questionNumber = questionCount + 1;
-  const URL =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:8080"
-      : "http://ec2-18-130-127-69.eu-west-2.compute.amazonaws.com";
-
-  const checkAnswer = async (answer: string) => {
-    if (answer === question.correct) {
-      dispatch({ type: Types.AddScore });
-      return history("/correct");
-    }
-
-    return history("/incorrect");
-  };
+function Questions() {
+  const [question, setQuestion] = useState<Question>({
+    number: null,
+    question: "",
+    option_a: "",
+    option_b: "",
+    option_c: "",
+    option_d: "",
+  });
 
   useEffect(() => {
-    dispatch({ type: Types.AddQuestion });
-    const callback =
-      URL +
-      window.location.pathname +
-      "?questionNumber=" +
-      questionNumber +
-      "&environment=" +
-      process.env.NODE_ENV;
-    setRoute(window.location.pathname);
-    fetch(callback)
-      .then((response) => response.json())
-      .then((response) => {
-        dispatch({
-          type: Types.setQuestion,
-          payload: response,
-        });
+    getAnswers(1).then((response) => {
+      setQuestion({
+        number: response.number,
+        question: response.question,
+        option_a: response.option_a,
+        option_b: response.option_b,
+        option_c: response.option_c,
+        option_d: response.option_d,
       });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, setRoute]);
+    });
+  }, []);
 
   return (
     <Layout>
@@ -62,28 +40,28 @@ function Questions({ setRoute }: QuestionsProps) {
               <Option
                 text={question.option_a}
                 ariaLabel="option A"
-                onClick={() => checkAnswer(question.option_a)}
+                // onClick={() => checkAnswer(question.option_a)}
               />
             </Grid>
             <Grid item xs={12} md={6}>
               <Option
                 text={question.option_b}
                 ariaLabel="option B"
-                onClick={() => checkAnswer(question.option_b)}
+                // onClick={() => checkAnswer(question.option_b)}
               />
             </Grid>
             <Grid item xs={12} md={6}>
               <Option
                 text={question.option_c}
                 ariaLabel="option C"
-                onClick={() => checkAnswer(question.option_c)}
+                // onClick={() => checkAnswer(question.option_c)}
               />
             </Grid>
             <Grid item xs={12} md={6}>
               <Option
                 text={question.option_d}
                 ariaLabel="option D"
-                onClick={() => checkAnswer(question.option_d)}
+                // onClick={() => checkAnswer(question.option_d)}
               />
             </Grid>
           </StyledGrid>
