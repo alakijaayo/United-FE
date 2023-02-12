@@ -34,12 +34,12 @@ const reducer = (state: State, action: QuestionAction): State => {
     case Types.AddQuestion:
       return {
         ...state,
-        questionCount: state.questionCount + 1,
+        questionCount: (state.questionCount += 1),
       };
     case Types.AddScore:
       return {
         ...state,
-        scoreCount: state.scoreCount + 1,
+        scoreCount: (state.scoreCount += 1),
       };
     case Types.reset:
       return {

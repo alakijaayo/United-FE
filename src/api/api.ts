@@ -3,8 +3,8 @@ const url = inProduction
   ? "http://ec2-18-130-127-69.eu-west-2.compute.amazonaws.com"
   : "http://localhost:8080";
 
-export const getQuestion = (questionNumber: number) => {
-  const variables = `${window.location.pathname}/${questionNumber}/${process.env.NODE_ENV}`;
+export const getQuestion = () => {
+  const variables = `${window.location.pathname}/${process.env.NODE_ENV}`;
   const URL = url + variables;
 
   const question = fetch(URL).then((response) => response.json());

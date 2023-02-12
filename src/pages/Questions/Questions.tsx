@@ -6,11 +6,11 @@ import Question from "../../models/Question";
 import { UserContext } from "../../providers/UserProvider";
 import { QuestionText, StyledGrid, Option } from "./Questions.style";
 import { useNavigate } from "react-router-dom";
+import { Types } from "../../providers/UserProvider/reducer";
 
 function Questions() {
   const history = useNavigate();
-  const { state } = useContext(UserContext);
-  const { questionCount } = state;
+  const { dispatch } = useContext(UserContext);
   const [question, setQuestion] = useState<Question>({
     number: null,
     question: "",
@@ -21,7 +21,8 @@ function Questions() {
   });
 
   useEffect(() => {
-    getQuestion(questionCount).then((response) => {
+    dispatch({ type: Types.AddQuestion });
+    getQuestion().then((response) => {
       setQuestion({
         number: response.number,
         question: response.question,
@@ -31,7 +32,7 @@ function Questions() {
         option_d: response.option_d,
       });
     });
-  }, [questionCount]);
+  }, [dispatch]);
 
   const handleOnClick = (option: string) => {
     checkAnswer(question.number, option).then((response) =>
