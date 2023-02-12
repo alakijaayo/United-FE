@@ -18,10 +18,6 @@ function Answer({ route }: AnswerProps) {
   const link = questionCount !== 25 ? route : "/result";
 
   const handleOnNext = () => {
-    if (questionCount !== 25) {
-      dispatch({ type: Types.AddQuestion });
-    }
-
     if (isCorrect) {
       dispatch({ type: Types.AddScore });
     }
