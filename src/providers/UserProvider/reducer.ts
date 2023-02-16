@@ -10,6 +10,7 @@ type ActionMap<M extends { [index: string]: any }> = {
 };
 
 interface State {
+  answer: string;
   questionCount: number;
   scoreCount: number;
 }
@@ -17,11 +18,17 @@ interface State {
 export enum Types {
   AddScore = "incrementScore",
   AddQuestion = "incrementQuestion",
+  CorrectAnswer = "correctAnswer",
   reset = "resetNumbers",
 }
 
 type QuestionPayload = {
-  [Types.AddScore]: undefined;
+  [Types.AddScore]: {
+    score: number;
+  };
+  [Types.CorrectAnswer]: {
+    answer: string;
+  };
   [Types.AddQuestion]: undefined;
   [Types.reset]: undefined;
 };
@@ -39,7 +46,12 @@ const reducer = (state: State, action: QuestionAction): State => {
     case Types.AddScore:
       return {
         ...state,
-        scoreCount: (state.scoreCount += 1),
+        scoreCount: (state.scoreCount = action.payload.score),
+      };
+    case Types.CorrectAnswer:
+      return {
+        ...state,
+        answer: action.payload.answer,
       };
     case Types.reset:
       return {

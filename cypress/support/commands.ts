@@ -41,7 +41,7 @@ let score = 0;
 let question = 0;
 
 Cypress.Commands.add("chooseLevel", () => {
-  const levels = ["Easy", "Medium", "Hard"];
+  const levels = [/easy/i, /medium/i, /hard/i];
   const level = levels[Math.floor(Math.random() * levels.length)];
   cy.visit("/");
   cy.findByText(`Question: ${question}/25`).should("exist");

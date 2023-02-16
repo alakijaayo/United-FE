@@ -1,5 +1,11 @@
 import { Grid } from "@mui/material";
-import { useContext, useEffect, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { checkAnswer, getQuestion } from "../../api/api";
 import Layout from "../../layout";
 import Question from "../../models/Question";
@@ -8,7 +14,11 @@ import { QuestionText, StyledGrid, Option } from "./Questions.style";
 import { useNavigate } from "react-router-dom";
 import { Types } from "../../providers/UserProvider/reducer";
 
-function Questions() {
+interface QuestionsProps {
+  setRoute: Dispatch<SetStateAction<string>>;
+}
+
+function Questions({ setRoute }: QuestionsProps) {
   const history = useNavigate();
   const { dispatch } = useContext(UserContext);
   const [question, setQuestion] = useState<Question>({
@@ -35,9 +45,15 @@ function Questions() {
   }, [dispatch]);
 
   const handleOnClick = (option: string) => {
-    checkAnswer(question.number, option).then((response) =>
-      history(response.url)
-    );
+    checkAnswer(question.number, option).then((response) => {
+      setRoute(response.level);
+      if (response.url === "/correct") {
+        dispatch({ type: Types.AddScore, payload: response });
+      } else {
+        dispatch({ type: Types.CorrectAnswer, payload: response });
+      }
+      history(response.url);
+    });
   };
 
   return (

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Answer from "../pages/Answer";
 import HomePage from "../pages/HomePage";
@@ -9,7 +9,7 @@ import { UserContext } from "../providers/UserProvider";
 function Router() {
   const questionRoutes = ["easy", "medium", "hard"];
   const answerRoutes = ["/correct", "/incorrect"];
-  const route = window.location.pathname;
+  const [route, setRoute] = useState("");
   const { state } = useContext(UserContext);
   const { questionCount } = state;
   const isFinished = questionCount === 25;
@@ -18,7 +18,11 @@ function Router() {
     <Routes>
       <Route path="/" element={<HomePage levels={questionRoutes} />} />
       {questionRoutes.map((path) => (
-        <Route key={`${path}`} path={path} element={<Questions />} />
+        <Route
+          key={`${path}`}
+          path={path}
+          element={<Questions setRoute={setRoute} />}
+        />
       ))}
       {answerRoutes.map((path) => (
         <Route key={`${path}`} path={path} element={<Answer route={route} />} />

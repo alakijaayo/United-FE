@@ -6,11 +6,13 @@ interface UserProviderProps {
 }
 
 type InitialStateType = {
+  answer: string;
   questionCount: number;
   scoreCount: number;
 };
 
 const initialState = {
+  answer: "",
   questionCount: 0,
   scoreCount: 0,
 };
