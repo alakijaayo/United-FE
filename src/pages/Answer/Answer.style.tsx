@@ -1,5 +1,4 @@
-import { styled, Typography } from "@mui/material";
-import Button from "../../components/Button";
+import { styled, Typography, Button } from "@mui/material";
 
 export const Text = styled(Typography)`
   margin-bottom: 1rem;
@@ -27,7 +26,14 @@ export const CorrectAnswer = styled(Typography)`
 export const Next = styled(Button)`
   width: 250px;
   font-size: 15px;
-  height: 50px;
+  height: 60px;
+  background: red;
+  font-weight: 800;
+  line-height: inherit;
+
+  &:hover {
+    background: black;
+  }
 
   ${({ theme }) => theme.breakpoints.up("md")} {
     width: 500px;

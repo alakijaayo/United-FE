@@ -12,7 +12,6 @@ import Question from "../../models/Question";
 import { UserContext } from "../../providers/UserProvider";
 import { QuestionText, StyledGrid, Option } from "./Questions.style";
 import { useNavigate } from "react-router-dom";
-import { Types } from "../../providers/UserProvider/reducer";
 
 interface QuestionsProps {
   setRoute: Dispatch<SetStateAction<string>>;
@@ -31,8 +30,8 @@ function Questions({ setRoute }: QuestionsProps) {
   });
 
   useEffect(() => {
-    dispatch({ type: Types.AddQuestion });
     getQuestion().then((response) => {
+      dispatch({ type: "incrementQuestion", payload: response });
       setQuestion({
         number: response.number,
         question: response.question,
@@ -48,9 +47,9 @@ function Questions({ setRoute }: QuestionsProps) {
     checkAnswer(question.number, option).then((response) => {
       setRoute(response.level);
       if (response.url === "/correct") {
-        dispatch({ type: Types.AddScore, payload: response });
+        dispatch({ type: "incrementScore", payload: response });
       } else {
-        dispatch({ type: Types.CorrectAnswer, payload: response });
+        dispatch({ type: "correctAnswer", payload: response });
       }
       history(response.url);
     });
@@ -66,31 +65,43 @@ function Questions({ setRoute }: QuestionsProps) {
           <StyledGrid container rowSpacing={{ xs: 4, md: 12 }} spacing={2}>
             <Grid item xs={12} md={6}>
               <Option
-                text={question.option_a}
-                ariaLabel="option A"
+                aria-label="option A"
+                variant="contained"
+                disableRipple
                 onClick={() => handleOnClick(question.option_a)}
-              />
+              >
+                {question.option_a}
+              </Option>
             </Grid>
             <Grid item xs={12} md={6}>
               <Option
-                text={question.option_b}
-                ariaLabel="option B"
+                aria-label="option B"
+                variant="contained"
+                disableRipple
                 onClick={() => handleOnClick(question.option_b)}
-              />
+              >
+                {question.option_b}
+              </Option>
             </Grid>
             <Grid item xs={12} md={6}>
               <Option
-                text={question.option_c}
-                ariaLabel="option C"
+                aria-label="option C"
+                variant="contained"
+                disableRipple
                 onClick={() => handleOnClick(question.option_c)}
-              />
+              >
+                {question.option_c}
+              </Option>
             </Grid>
             <Grid item xs={12} md={6}>
               <Option
-                text={question.option_d}
-                ariaLabel="option D"
+                aria-label="option D"
+                variant="contained"
+                disableRipple
                 onClick={() => handleOnClick(question.option_d)}
-              />
+              >
+                {question.option_d}
+              </Option>
             </Grid>
           </StyledGrid>
         </>

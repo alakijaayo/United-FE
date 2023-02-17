@@ -26,3 +26,14 @@ export const checkAnswer = (questionNumber: number | null, answer: string) => {
     },
   }).then((response) => response.json());
 };
+
+export const resetCount = () => {
+  const URL = url + "/clear";
+
+  return fetch(URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((response) => response.json());
+};

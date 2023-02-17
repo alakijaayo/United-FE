@@ -15,22 +15,20 @@ interface State {
   scoreCount: number;
 }
 
-export enum Types {
-  AddScore = "incrementScore",
-  AddQuestion = "incrementQuestion",
-  CorrectAnswer = "correctAnswer",
-  reset = "resetNumbers",
-}
-
 type QuestionPayload = {
-  [Types.AddScore]: {
-    score: number;
+  incrementScore: {
+    score: string;
   };
-  [Types.CorrectAnswer]: {
+  correctAnswer: {
     answer: string;
   };
-  [Types.AddQuestion]: undefined;
-  [Types.reset]: undefined;
+  incrementQuestion: {
+    questionCount: string;
+  };
+  resetNumbers: {
+    score: string;
+    questionCount: string;
+  };
 };
 
 export type QuestionAction =
@@ -38,26 +36,26 @@ export type QuestionAction =
 
 const reducer = (state: State, action: QuestionAction): State => {
   switch (action.type) {
-    case Types.AddQuestion:
+    case "incrementQuestion":
       return {
         ...state,
-        questionCount: (state.questionCount += 1),
+        questionCount: parseInt(action.payload.questionCount),
       };
-    case Types.AddScore:
+    case "incrementScore":
       return {
         ...state,
-        scoreCount: (state.scoreCount = action.payload.score),
+        scoreCount: parseInt(action.payload.score),
       };
-    case Types.CorrectAnswer:
+    case "correctAnswer":
       return {
         ...state,
         answer: action.payload.answer,
       };
-    case Types.reset:
+    case "resetNumbers":
       return {
         ...state,
-        questionCount: 0,
-        scoreCount: 0,
+        questionCount: parseInt(action.payload.questionCount),
+        scoreCount: parseInt(action.payload.score),
       };
     default:
       return state;

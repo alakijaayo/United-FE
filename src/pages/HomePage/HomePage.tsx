@@ -1,7 +1,6 @@
 import { Grid } from "@mui/material";
-import Button from "../../components/Button";
 import Layout from "../../layout";
-import { StyledGrid, Text } from "./HomePage.styles";
+import { StyledGrid, Text, StyledButton } from "./HomePage.styles";
 
 interface HomePageProps {
   levels: string[];
@@ -18,7 +17,9 @@ function HomePage({ levels }: HomePageProps) {
       <StyledGrid container rowSpacing={{ xs: 3, md: 6 }}>
         {levels.map((level, idx) => (
           <Grid key={`${level}-${idx}`} item xs={12} md={4}>
-            <Button text={level} link={level} />
+            <StyledButton variant="contained" disableRipple href={level}>
+              {level}
+            </StyledButton>
           </Grid>
         ))}
       </StyledGrid>

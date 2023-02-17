@@ -1,4 +1,4 @@
-import { Grid, styled, Typography } from "@mui/material";
+import { Grid, styled, Typography, Button } from "@mui/material";
 
 export const Text = styled(Typography)`
   margin: 1rem;
@@ -19,5 +19,18 @@ export const StyledGrid = styled(Grid)`
 
   ${({ theme }) => theme.breakpoints.up("md")} {
     margin: 4rem;
+  }
+`;
+
+export const StyledButton = styled(Button)`
+  width: 350px;
+  height: 70px;
+  background: red;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: inherit;
+
+  &:hover {
+    background: black;
   }
 `;

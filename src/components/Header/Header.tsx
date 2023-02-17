@@ -8,8 +8,12 @@ import {
   Text,
 } from "./Header.style";
 import MenuOptions from "../../models/MenuOptions";
+import { resetCount } from "../../api/api";
+import { useContext } from "react";
+import { UserContext } from "../../providers/UserProvider";
 
 function Header() {
+  const { dispatch } = useContext(UserContext);
   const homeOptions: MenuOptions = {
     icon: HomeIcon,
     iconProps: {
@@ -26,14 +30,25 @@ function Header() {
     path: "/",
   };
 
+  const resetUserCount = () => {
+    resetCount().then((response) => {
+      dispatch({ type: "resetNumbers", payload: response });
+    });
+  };
+
   return (
     <>
       <StyledHeader position="static">
         <StyledToolbar>
-          <StyledButton color="inherit" variant="outlined" href="/">
+          <StyledButton
+            color="inherit"
+            variant="outlined"
+            onClick={resetUserCount}
+            href="/"
+          >
             Homepage
           </StyledButton>
-          <IconButton options={homeOptions} />
+          <IconButton options={homeOptions} onClick={resetUserCount} />
           <Text variant="h4">United Quiz</Text>
           <IconButton options={leaderboardOptions} />
           <StyledButton color="inherit" variant="outlined" href="/">

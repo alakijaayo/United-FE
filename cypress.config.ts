@@ -6,6 +6,6 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-    baseUrl: "http://localhost:3000",
+    baseUrl: "http://unitedfebucket.s3-website.eu-west-2.amazonaws.com",
   },
 });

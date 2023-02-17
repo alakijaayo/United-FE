@@ -33,7 +33,14 @@ function Answer({ route }: AnswerProps) {
             </CorrectAnswer>
           </>
         )}
-        <Next ariaLabel="onNext" text={text} onClick={handleOnNext} />
+        <Next
+          aria-label="onNext"
+          variant="contained"
+          disableRipple
+          onClick={handleOnNext}
+        >
+          {text}
+        </Next>
       </StyledDiv>
     </Layout>
   );
