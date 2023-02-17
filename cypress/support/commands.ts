@@ -42,6 +42,13 @@ let question = 0;
 
 Cypress.Commands.add("chooseLevel", () => {
   const levels = [/easy/i, /medium/i, /hard/i];
+  cy.request({
+    method: "POST",
+    url: "http://ec2-18-130-127-69.eu-west-2.compute.amazonaws.com/clear",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
   const level = levels[Math.floor(Math.random() * levels.length)];
   cy.visit("/");
   cy.findByText(`Question: ${question}/25`).should("exist");
@@ -59,6 +66,7 @@ Cypress.Commands.add("selectOption", () => {
 });
 
 Cypress.Commands.add("checkAnswer", () => {
+  cy.wait(800);
   cy.url().then((val) => {
     if (val.includes("incorrect")) {
       cy.findByText("Incorrect").should("exist");
