@@ -7,12 +7,14 @@ interface UserProviderProps {
 
 type InitialStateType = {
   answer: string;
+  link: string;
   questionCount: number;
   scoreCount: number;
 };
 
 const initialState = {
   answer: "",
+  link: "",
   questionCount: 0,
   scoreCount: 0,
 };

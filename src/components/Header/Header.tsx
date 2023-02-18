@@ -34,6 +34,8 @@ function Header() {
     resetCount().then((response) => {
       dispatch({ type: "resetNumbers", payload: response });
     });
+    sessionStorage.removeItem("questionCount");
+    sessionStorage.removeItem("score");
   };
 
   return (

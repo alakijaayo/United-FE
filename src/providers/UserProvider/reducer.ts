@@ -11,6 +11,7 @@ type ActionMap<M extends { [index: string]: any }> = {
 
 interface State {
   answer: string;
+  link: string;
   questionCount: number;
   scoreCount: number;
 }
@@ -28,6 +29,9 @@ type QuestionPayload = {
   resetNumbers: {
     score: string;
     questionCount: string;
+  };
+  setLink: {
+    link: string;
   };
 };
 
@@ -56,6 +60,11 @@ const reducer = (state: State, action: QuestionAction): State => {
         ...state,
         questionCount: parseInt(action.payload.questionCount),
         scoreCount: parseInt(action.payload.score),
+      };
+    case "setLink":
+      return {
+        ...state,
+        link: action.payload.link,
       };
     default:
       return state;

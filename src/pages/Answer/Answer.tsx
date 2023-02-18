@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { resetCount, setCount } from "../../api/api";
 import Layout from "../../layout";
 import { UserContext } from "../../providers/UserProvider";
 import { CorrectAnswer, Next, StyledDiv, Text } from "./Answer.style";
@@ -10,7 +11,7 @@ interface AnswerProps {
 
 function Answer({ route }: AnswerProps) {
   const isCorrect = window.location.pathname === "/correct";
-  const { state } = useContext(UserContext);
+  const { state, dispatch } = useContext(UserContext);
   const { questionCount, answer } = state;
   const history = useNavigate();
   const text = questionCount !== 25 ? "Next Question" : "Results";
@@ -19,6 +20,19 @@ function Answer({ route }: AnswerProps) {
   const handleOnNext = () => {
     return history(link);
   };
+
+  if (questionCount === 0) {
+    sessionStorage.length <= 2
+      ? setCount(sessionStorage.getItem("questionCount"), "0").then(
+          (response) => {
+            console.log(response);
+            dispatch({ type: "resetNumbers", payload: response });
+            dispatch({ type: "correctAnswer", payload: response });
+            dispatch({ type: "setLink", payload: response });
+          }
+        )
+      : resetCount();
+  }
 
   return (
     <Layout>

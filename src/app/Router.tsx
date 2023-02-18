@@ -14,6 +14,8 @@ function Router() {
   const { questionCount } = state;
   const isFinished = questionCount === 25;
 
+  console.log(route);
+
   return (
     <Routes>
       <Route path="/" element={<HomePage levels={questionRoutes} />} />
