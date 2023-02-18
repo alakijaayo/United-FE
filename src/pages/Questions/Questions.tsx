@@ -1,11 +1,5 @@
 import { Grid } from "@mui/material";
-import {
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { useContext, useEffect, useState } from "react";
 import { checkAnswer, getQuestion, resetCount, setCount } from "../../api/api";
 import Layout from "../../layout";
 import Question from "../../models/Question";
@@ -13,11 +7,7 @@ import { UserContext } from "../../providers/UserProvider";
 import { QuestionText, StyledGrid, Option } from "./Questions.style";
 import { useNavigate } from "react-router-dom";
 
-interface QuestionsProps {
-  setRoute: Dispatch<SetStateAction<string>>;
-}
-
-function Questions({ setRoute }: QuestionsProps) {
+function Questions() {
   const history = useNavigate();
   const { state, dispatch } = useContext(UserContext);
   const { questionCount } = state;
@@ -43,6 +33,10 @@ function Questions({ setRoute }: QuestionsProps) {
 
   useEffect(() => {
     getQuestion().then((response) => {
+      dispatch({
+        type: "setLink",
+        payload: { link: window.location.pathname },
+      });
       dispatch({ type: "incrementQuestion", payload: response });
       setQuestion({
         number: response.number,
@@ -58,13 +52,12 @@ function Questions({ setRoute }: QuestionsProps) {
 
   const handleOnClick = (option: string) => {
     checkAnswer(question.number, option).then((response) => {
-      setRoute(response.level);
       if (response.url === "/correct") {
-        sessionStorage.setItem("score", response.score);
         dispatch({ type: "incrementScore", payload: response });
       } else {
         dispatch({ type: "correctAnswer", payload: response });
       }
+      sessionStorage.setItem("score", response.score);
       history(response.url);
     });
   };

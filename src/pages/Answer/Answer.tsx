@@ -5,14 +5,10 @@ import Layout from "../../layout";
 import { UserContext } from "../../providers/UserProvider";
 import { CorrectAnswer, Next, StyledDiv, Text } from "./Answer.style";
 
-interface AnswerProps {
-  route: string;
-}
-
-function Answer({ route }: AnswerProps) {
+function Answer() {
   const isCorrect = window.location.pathname === "/correct";
   const { state, dispatch } = useContext(UserContext);
-  const { questionCount, answer } = state;
+  const { questionCount, answer, route } = state;
   const history = useNavigate();
   const text = questionCount !== 25 ? "Next Question" : "Results";
   const link = questionCount !== 25 ? route : "/result";
@@ -22,15 +18,16 @@ function Answer({ route }: AnswerProps) {
   };
 
   if (questionCount === 0) {
-    sessionStorage.length <= 2
-      ? setCount(sessionStorage.getItem("questionCount"), "0").then(
-          (response) => {
-            console.log(response);
-            dispatch({ type: "resetNumbers", payload: response });
-            dispatch({ type: "correctAnswer", payload: response });
-            dispatch({ type: "setLink", payload: response });
-          }
-        )
+    sessionStorage.length === 2
+      ? setCount(
+          sessionStorage.getItem("questionCount"),
+          sessionStorage.getItem("score")
+        ).then((response) => {
+          console.log(response);
+          dispatch({ type: "resetNumbers", payload: response });
+          dispatch({ type: "correctAnswer", payload: response });
+          dispatch({ type: "setLink", payload: response });
+        })
       : resetCount();
   }
 
