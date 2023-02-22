@@ -1,5 +1,8 @@
 import { Grid } from "@mui/material";
+import { useContext, useEffect } from "react";
+import { resetCount } from "../../api/api";
 import Layout from "../../layout";
+import { UserContext } from "../../providers/UserProvider";
 import { StyledGrid, Text, StyledButton } from "./HomePage.styles";
 
 interface HomePageProps {
@@ -7,6 +10,16 @@ interface HomePageProps {
 }
 
 function HomePage({ levels }: HomePageProps) {
+  const { dispatch } = useContext(UserContext);
+
+  useEffect(() => {
+    resetCount().then((response) => {
+      dispatch({ type: "resetNumbers", payload: response });
+    });
+    sessionStorage.removeItem("questionCount");
+    sessionStorage.removeItem("score");
+  });
+
   return (
     <Layout>
       <Text variant="h3">Welcome to the Manchester United Quiz</Text>
