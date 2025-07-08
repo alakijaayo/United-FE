@@ -80,10 +80,10 @@ function Questions() {
             {nextQuestion}
           </QuestionText>
           <StyledGrid container rowSpacing={{ xs: 4, md: 12 }} spacing={2}>
-            {answer.map((answers) => (
-              <Grid item xs={12} md={6}>
+            {answer.map((answers, idx) => (
+              <Grid item xs={12} md={6} key={`option ${idx + 1}`}>
                 <Option
-                  aria-label="option A"
+                  aria-label={`option ${idx + 1}`}
                   variant="contained"
                   disableRipple
                   onClick={() => handleOnClick(answers)}
