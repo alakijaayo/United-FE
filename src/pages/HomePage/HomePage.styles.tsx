@@ -23,7 +23,7 @@ export const StyledGrid = styled(Grid)`
 `;
 
 export const StyledButton = styled(Button)`
-  width: 350px;
+  width: 250px;
   height: 70px;
   background: red;
   font-size: 24px;
@@ -32,5 +32,13 @@ export const StyledButton = styled(Button)`
 
   &:hover {
     background: black;
+  }
+
+  ${({ theme }) => theme.breakpoints.up("sm")} {
+    width: 300px;
+  }
+
+  ${({ theme }) => theme.breakpoints.up("lg")} {
+    width: 350px;
   }
 `;

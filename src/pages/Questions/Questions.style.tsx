@@ -23,8 +23,14 @@ export const Option = styled(Button)`
     background: black;
   }
 
-  ${({ theme }) => theme.breakpoints.up("md")} {
-    width: 500px;
+  ${({ theme }) => theme.breakpoints.up("sm")} {
+    width: 400px;
+    font-size: 24px;
+    height: 70px;
+  }
+
+  ${({ theme }) => theme.breakpoints.up("lg")} {
+    width: 450px;
     font-size: 24px;
     height: 70px;
   }
@@ -34,7 +40,7 @@ export const StyledGrid = styled(Grid)`
   text-align: center;
   width: 90%;
   position: absolute;
-  top: 38%;
+  top: 35%;
 
   ${({ theme }) => theme.breakpoints.up("md")} {
     margin: auto;
