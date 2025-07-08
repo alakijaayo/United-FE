@@ -62,54 +62,36 @@ function Questions() {
     });
   };
 
+  const {
+    question: nextQuestion,
+    option_a,
+    option_b,
+    option_c,
+    option_d,
+  } = question;
+
+  const answer = [option_a, option_b, option_c, option_d];
+
   return (
     <Layout>
       {question && (
         <>
           <QuestionText aria-label="question" variant="h3">
-            {question.question}
+            {nextQuestion}
           </QuestionText>
           <StyledGrid container rowSpacing={{ xs: 4, md: 12 }} spacing={2}>
-            <Grid item xs={12} md={6}>
-              <Option
-                aria-label="option A"
-                variant="contained"
-                disableRipple
-                onClick={() => handleOnClick(question.option_a)}
-              >
-                {question.option_a}
-              </Option>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Option
-                aria-label="option B"
-                variant="contained"
-                disableRipple
-                onClick={() => handleOnClick(question.option_b)}
-              >
-                {question.option_b}
-              </Option>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Option
-                aria-label="option C"
-                variant="contained"
-                disableRipple
-                onClick={() => handleOnClick(question.option_c)}
-              >
-                {question.option_c}
-              </Option>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Option
-                aria-label="option D"
-                variant="contained"
-                disableRipple
-                onClick={() => handleOnClick(question.option_d)}
-              >
-                {question.option_d}
-              </Option>
-            </Grid>
+            {answer.map((answers) => (
+              <Grid item xs={12} md={6}>
+                <Option
+                  aria-label="option A"
+                  variant="contained"
+                  disableRipple
+                  onClick={() => handleOnClick(answers)}
+                >
+                  {answers}
+                </Option>
+              </Grid>
+            ))}
           </StyledGrid>
         </>
       )}
