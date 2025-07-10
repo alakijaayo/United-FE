@@ -7,7 +7,7 @@ export const QuestionText = styled(Typography)`
   font-size: 22px;
 
   ${({ theme }) => theme.breakpoints.up("md")} {
-    font-size: 44px;
+    font-size: 55px;
   }
 `;
 
