@@ -47,7 +47,6 @@ export const setCount = async (
   score: string | null
 ) => {
   const variables = `/setScore/${questionCount}/${score}${window.location.pathname}`;
-  console.log(variables);
 
   const URL = url + variables;
 

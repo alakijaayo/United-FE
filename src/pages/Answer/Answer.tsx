@@ -23,7 +23,6 @@ function Answer() {
           sessionStorage.getItem("questionCount"),
           sessionStorage.getItem("score")
         ).then((response) => {
-          console.log(response);
           dispatch({ type: "resetNumbers", payload: response });
           dispatch({ type: "correctAnswer", payload: response });
           dispatch({ type: "setLink", payload: response });
